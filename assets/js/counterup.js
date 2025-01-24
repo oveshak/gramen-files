@@ -1,17 +1,7 @@
-/*!
- * jquery.counterup.js 2.1.0
- *
- * Copyright 2013, Benjamin Intal http://gambit.ph @bfintal
- * Released under the GPL v2 License
- *
- * Amended by Jeremy Paris, Ciro Mattia Gonano and others
- *
- * Date: Feb 24, 2017
- */
-(function ($) {
+(function($) {
     "use strict";
 
-    $.fn.counterUp = function (options) {
+    $.fn.counterUp = function(options) {
 
         // Defaults
         var settings = $.extend({
@@ -21,12 +11,11 @@
                 'beginAt': 0,
                 'formatter': false,
                 'context': 'window',
-                callback: function () {
-                }
+                callback: function() {}
             }, options),
             s;
 
-        return this.each(function () {
+        return this.each(function() {
 
             // Store the object
             var $this = $(this),
@@ -38,7 +27,7 @@
                     context: $(this).data('counterup-context') || settings.context
                 };
 
-            var counterUpper = function () {
+            var counterUpper = function() {
                 var nums = [];
                 var diheaders = counter.time / counter.delay;
                 var num = $(this).attr('data-num') ? $(this).attr('data-num') : $this.text();
@@ -91,7 +80,7 @@
                 $this.text(counter.beginAt);
 
                 // Updates the number until we're done
-                var f = function () {
+                var f = function() {
                     if (!$this.data('counterup-nums')) {
                         settings.callback.call(this);
                         return;
@@ -112,10 +101,10 @@
             };
 
             // Perform counts when the element gets into view
-            $this.waypoint(function (direction) {
+            $this.waypoint(function(direction) {
                 counterUpper();
                 this.destroy(); //-- Waypoint 3.0 version of triggerOnce
-            }, {offset: counter.offset + "%", context: counter.context});
+            }, { offset: counter.offset + "%", context: counter.context });
         });
 
     };
